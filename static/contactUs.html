@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="contactUs.css" />
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+<script>
+    var submitButton = document.getElementById("submit_form");
+    var form = document.getElementById("email_form");
+    form.addEventListener("submit", function (e) {
+        setTimeout(function() {
+            submitButton.value = "Sending...";
+            submitButton.disabled = true;
+        }, 1);
+    });
+</script> 
+  </head>
+  <body>
+    <div class="container">
+      
+      <div class="form">
+        <div class="contact-info">
+          <h3 class="title">Contact Us</h3>
+          <p class="text">
+            
+          </p>
+
+          <div class="info">
+            <div class="information">
+             
+              <p>Car costify</p>
+            </div>
+            <div class="information">
+              
+              <p>sonammawari@gmail.com</p>
+            </div>
+            <div class="information">
+              
+              <p>123-456-789</p>
+            </div>
+          </div>
+
+          <div class="social-media">
+            <p>Connect with us :</p>
+            <div class="social-icons">
+              <a href="#">
+                <i class="fa fa-github-alt fa-inverse fa-2x"></i>
+              </a>
+              <a href="#">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </div><br>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <span class="circle one"></span>
+          <span class="circle two"></span>
+
+          <form action="https://postmail.invotes.com/send" method="post" id="email_form">
+
+   
+            <h3 class="title">Contact us
+            <a href="/static/home.html" class="btn" style="padding:2px;margin-left: 180px"> X </a>
+            </h3>
+
+		<!--<input type="text" name="subject" placeholder="Subject" />
+    		<textarea name="text" placeholder="Message"></textarea>
+    		
+     		 <!-- return urls can be fully qualified -OR-
+         		start with / for root relative -OR-
+         		start with . for url relative --> 
+    		
+
+		<!--<input type="text" name="extra_phone_number" placeholder="Phone Number" /> -->
+            <input type="hidden" name="access_token" value="2tikvccv8m5j6kklc15q0fv8" />
+            <div class="input-container">
+              <input type="email" name="subject" class="input" placeholder="Email" required="required"/>
+              <span>Email</span>
+            </div>
+            <div class="input-container">
+              <input type="number" name="extra_phone_number" class="input" placeholder="Phone(Optional)"/>
+              <span>Phone</span>
+            </div>
+            <div class="input-container textarea">
+              <textarea name="text" class="input" placeholder="Message" required="required"></textarea>
+              <span>Message</span>
+            </div>
+		<input type="hidden" name="success_url" value="/static/contactUs.html" />
+    		<input type="hidden" name="error_url" value="/static/contactUs.html" />
+
+		<input class="btn" id="submit_form" type="submit" value="Send" />
+            <!-- <a href="https://car-price-prediction-6tt2.onrender.com/static/home.html" class="btn"> Send </a> -->
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+  </body>
+</html>

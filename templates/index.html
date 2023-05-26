@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarCostify</title>
+    <link rel='stylesheet' href='/static/style.css'>
+    <style>
+		@import url('https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500&family=Noto+Sans+Mono:wght@700&family=Zen+Old+Mincho&display=swap');
+
+
+
+		.table{
+			
+			font-family: 'Baloo Bhaijaan 2', cursive;
+			text-align: left;
+			margin-left: auto;
+  			margin-right: auto;
+		}
+		
+		
+
+		input , select{
+			font-size: 20px;
+			border-radius: 8px;
+			border: 1px solid orangered;
+			padding: 3px;
+			font-family: 'Baloo Bhaijaan 2', cursive;
+		}
+
+		th{
+			font-size: 50px;
+			text-align: center;
+		}
+
+		th:hover{
+			transition: ;
+		}
+
+		td{
+			font-size: 30px;
+			padding: 8px;
+		}
+
+		
+
+		.button
+		{
+			text-align: center;
+		}
+
+		button{
+			font-size: 30px;
+			padding: 5px;
+			border: 2px solid orangered;
+			border-radius: 8px;
+			font-family: 'Baloo Bhaijaan 2', cursive;
+		}
+	</style>
+</head>
+
+<body>
+
+    <div class="topbar">
+        <div class="logo"><a href="#"><img src="/static/logo.png" width="100" height="100" alt="logo" /></a>
+        </div>
+        <div class="topnav" id="myTopnav">
+            <a href="/static/home.html">Home</a>
+            <a href="/static/about.html">About</a>
+            <a href="/">Predict</a>
+            <a href="/static/contactUs.html#">Contact us</a>
+	</div>
+        </nav>
+
+    </div>
+
+
+    <div class="imgheader">
+        <div class="headercontent">
+            <div class="headertext">
+                <center>
+                    <h1> Car <em>Costify</em></h1>
+                    <div class="herotext">Our Machine Learning integrated car price prediction website is a cutting-edge platform that uses advanced data analytics and machine learning algorithms to accurately predict the market value of a car. The website provides a user-friendly interface that allows users to easily enter details about the car they're interested in, such as its make, model, year, mileage, and condition.
+                    </div>
+                    <div class="herotext">Behind the scenes, our website uses advanced machine learning algorithms that have been trained on vast amounts of historical car sales data to provide accurate and reliable price predictions. Our model takes into account a range of factors that can affect the value of a car, including market trends, seasonality, and fluctuations in supply and demand.
+                    </div>
+                </center>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="register" style="text-align: center">
+        <form action="{{ url_for('predict')}}" method="post">
+
+			<table class="table">
+				<tr>
+					<th colspan="2">Price Prediction</th>
+				</tr>
+				<tr>
+					<td>Car Model</td>
+					<td><input name="Car_Model" type="text" required="required"></td>
+				</tr>
+				<tr>
+					<td>Year</td>
+					<td><input name="Year" required="required" type="number"></td>
+				</tr>
+				<tr>
+					<td>Showroom's Price (in lakhs)</td>
+					<td><input name="Present_Price" required="required" type="number"></td>
+				</tr>
+				<tr>
+					<td>How many kms has your car driven?</td>
+					<td><input name="Kms_Driven" required="required" type="number"><td>
+				</tr>
+				<tr>
+					<td>How many time car has been owned?</td>
+					<td>
+						<!-- <select name="Owner">
+							<option  selected><i>Hint : "0 or 1"</i></option>
+							<option>0</option>
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+						</select> -->
+						<input name="Owner" required="required" type="number">
+					</td>
+				</tr>
+				<tr>
+					<td>Select Fuel Type</td>
+					<td>
+						<select name="Fuel_Type_Petrol">
+							<option value="Petrol">Petrol</option>
+							<option value="Diesel">Diesel</option>
+							<option value="Diesel">CNG</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Are you Dealer or Individual</td>
+					<td>
+						<select name="Seller_Type_Individual">
+							<option value="Dealer" selected>Dealer</option>
+							<option value="Individual">Individual</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Select Transmission Type</td>
+					<td>
+						<select name="Transmission_Mannual">
+							<option value="Automatic">Automatic</option>
+							<option value="Mannual">Manual</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td><button class="button" id="sub" type="submit ">Calculate the Selling Price</button></td>
+					<td class="predicted_value">{{ prediction_text }}</td>
+				</tr>
+			</table>
+
+
+
+
+
+
+
+
+
+            <!--<h3>Year</h3>
+            <input id="first" name="Year" type="number " required="required">
+            <h3>What is the Showroom Price?(In lakhs)</h3><br>
+		<input id="second" name="Present_Price" required="required">
+            <h3>How many Kilometers Driven?</h3>
+		<input id="third" name="Kms_Driven" required="required">
+            <h3>How many owners previously had the car(0 or 1 or 2) ?</h3><br>
+		<input id="fourth" name="Owner" required="required">
+            <h3>What is the Fuel type?</h3><br>
+		<select name="Fuel_Type_Petrol" id="fuel" required="required">
+                <option value="Petrol">Petrol</option>
+                <option value="Diesel">Diesel</option>
+                <option value="Diesel">CNG</option>
+            </select>
+            <h3>Are you a Dealer or Individual</h3><br>
+		<select name="Seller_Type_Individual" id="resea" required="required">
+                <option value="Dealer">Dealer</option>
+                <option value="Individual">Individual</option>
+            </select>
+            <h3>Transmission Type</h3><br>
+		<select name="Transmission_Mannual" id="research" required="required">
+                <option value="Mannual">Manual Car</option>
+                <option value="Automatic">Automatic Car</option>
+            </select>
+            <br><br><br><br>
+		<button class="button" id="sub" type="submit ">Calculate the Selling Price</button>
+            <br>
+        </form>
+        <h3>{{ prediction_text }}<h3>-->
+    </div>
+
+    <!--<div class="register">
+        <form action="https://mailto:user@example.com" method="post" enctype="text/plain" class="signup">
+            <div class="emailtext">
+                Get more info about the car.
+            </div>
+            <input type="text" name="name">
+            <input type="text" name="mail">
+            <input type="submit" value="Send" class="sendbutton">
+        </form>
+    </div>-->
+    <div class="section1-container">
+        <div class="box1">
+            <img src="https://i.ibb.co/FXkw6qM/car.png" width="100%" height="auto" alt="audi car" />
+        </div>
+        <div class="box2">
+            <h4>uniquely</h4>
+            <h1>Reliable & <em>Accurate</em></h1>
+            <div class="box2-text">
+                One of the key benefits of our  website is its accuracy. By leveraging the power of machine learning, we can provide highly precise price predictions that reflect real-world market conditions. This can be especially helpful for individuals who are looking to sell a car, as it allows them to set a fair price that reflects the true value of the vehicle.
+            </div>
+        </div>
+    </div>
+    <div class="section2-container">
+        <div class="box3">
+            <h1>Standard <em>features</em></h1>
+            <div class="accentline"></div>
+            Car Costify is a online platform which offers a variety of services, including car reviews, comparisons, price analysis, and a comprehensive database of new and used cars from various brands. Users can also search for dealerships and service centers in their area and get information about car loans, insurance, and other related services.
+        </div>
+        <div class="divider"></div>
+        <div class="box4">
+            <h1>The <em>Options</em></h1>
+            <div class="accentline"></div>
+            <p>Search Functionality, Price Prediction, Car Reviews, Car Comparison, </p>
+            <hr>
+            <p>Historical Data, Financing Options, Local Market Analysis</p>
+        </div>
+    </div>
+    <div class="footer">
+        © Car Costify — All rights reserved.
+    </div>
+		
+    <script>
+        /* Responsive Nav Menu */
+        function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topnav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topnav";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
